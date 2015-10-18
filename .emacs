@@ -40,8 +40,8 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; refresh package listings
-;(when (not package-archive-contents)
-  ;(package-refresh-contesnts))
+(when (not package-archive-contents)
+  (package-refresh-contesnts))
 
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -67,10 +67,6 @@
 (setq mac-command-modifier 'meta)
 (setq mac-control-modifier 'control)
 (setq mac-option-modifier 'control)
-
-;; spaces, not tabs
-(setq c-basic-offset 4)
-(setq nxml-child-indent 4)
 
 ;; turn of the menu bars
 (menu-bar-mode 0)
@@ -104,7 +100,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;;  Inline Linting with Flymake
+;;  Inline Linting with Flycheck
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -113,14 +109,12 @@
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;(ensure-package-installed 'pylint)
-
-;(ensure-package-installed
- ;'flymake-jslint
- ;'flymake-python-pyflakes
- ;'pymacs
-;)
-
+(setq flycheck-css-csslint-executable "/usr/local/bin/csslint")
+(setq flycheck-javascript-jshint-executable "/usr/local/bin/jshint")
+(setq flycheck-javascript-eslint-executable "/usr/local/bin/eslint")
+(setq flycheck-json-jsonlint-executable "/usr/local/bin/jsonlint")
+(setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
+(setq flycheck-sh-shellcheck-executable "/usr/local/bin/shellcheck")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -136,7 +130,7 @@
  ;'markdown-mode
  ;'python-mode
  ;'yaml-mode
- ;'sass-mode
+ ;'scss-mode
  ;; Git
  ;'ibuffer-git
  ;; Faces / colors
