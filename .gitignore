@@ -1,0 +1,88 @@
+.bash_history
+.psql_history
+.python_history
+
+.ssh/
+.git-crypt/
+Applications/
+Desktop/
+Documents/
+Downloads/
+Dropbox/
+Google Drive/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+bin/
+code/
+line-log/
+log/
+mydockerbuild/
+psqldata/
+
+
+
+
+# Ignore Emacs temporary files
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+
+
+# Ignore OSX files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
