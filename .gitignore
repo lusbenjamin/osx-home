@@ -16,6 +16,7 @@
 .pylint.d/
 .ssh/
 .git-crypt/
+.MacOSX/
 .Trash/
 Applications/
 Desktop/
