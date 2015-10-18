@@ -13,6 +13,7 @@
 .emacs.d/
 .gem/
 .local/
+.npm/
 .pylint.d/
 .ssh/
 .git-crypt/
@@ -34,6 +35,7 @@ code/
 line-log/
 log/
 mydockerbuild/
+node_modules/
 psqldata/
 
 
