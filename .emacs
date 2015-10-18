@@ -1,3 +1,16 @@
+
+
+;; Set up my path, in emacs and out
+(setq load-path (append (list "~/emacs-lisp") load-path))
+(setenv "PATH" (concat (expand-file-name "~/") "bin" ":" (getenv "PATH")))
+(setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
+
+;; Turn of the menu bars
+(menu-bar-mode 0)
+(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
+
+
+
 ;; Swap some keys on OS X
 (setq mac-command-modifier 'meta)
 (setq mac-control-modifier 'control)
@@ -48,15 +61,27 @@
 (add-hook 'post-command-hook 'show-fly-err-at-point)
 
 
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Packages
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Auto-Generated Custom Variables
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

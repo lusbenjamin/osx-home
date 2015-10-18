@@ -2,8 +2,16 @@
 .psql_history
 .python_history
 
+.aws/
+.config/
+.docker/
+.dropbox/
+.emacs.d/
+.gem/
+.local/
 .ssh/
 .git-crypt/
+.Trash/
 Applications/
 Desktop/
 Documents/
@@ -21,6 +29,8 @@ line-log/
 log/
 mydockerbuild/
 psqldata/
+
+
 
 
 
