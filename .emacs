@@ -99,11 +99,19 @@
 
 ;; Language modes
 (ensure-package-installed
- 'web-mode
+ 'gitconfig-mode
+ 'gitignore-mode
  'markdown-mode
- 'yaml-mode
  'scss-mode
-)
+ 'web-mode
+ 'yaml-mode
+ )
+
+;; Find files and references using Git
+(ensure-package-installed 'find-things-fast)
+(require 'find-things-fast)
+(global-set-key '[f1] 'ftf-find-file)
+(global-set-key '[f2] 'ftf-grepsource)
 
 ;; Sexier buffer list with git support
 (ensure-package-installed 'ibuffer)
