@@ -1,0 +1,41 @@
+[core]
+	editor = ~/bin/subl -nw
+[user]
+	name = Benjamin Lu
+	email = ben@10stories.co
+[alias]
+	#cb = !sh /c/apt/aptTools/git/scripts/create-branch
+	#maint = !sh /c/apt/aptTools/git/scripts/maint
+	#mcp = !sh /c/apt/aptTools/git/scripts/multi-cherry-pick
+	#sync = !sh /c/apt/aptTools/git/scripts/sync
+	#update-scripts = !sh /c/apt/update-git-scripts
+	ca = commit -a --amend
+	ci = commit -am
+	co = !git checkout $* && git submodule init && git submodule update && echo \"Checked out:\"
+	cp = cherry-pick
+	cpx = !git cp $* -ex
+	d = diff
+	dl = diff --name-status
+	da = !sh diffall
+	dc = !sh diffcommit
+	f = !git fetch --tags && git fetch && git submodule init && git submodule update
+	lg = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev
+	lgg = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev --graph
+	p = !git fetch --tags && git pull --rebase && git submodule init && git submodule update
+	pbj = !python -mwebbrowser http://youtu.be/s8MDNFaGfT4
+	pp = !git p && git push
+	rhh = reset --hard HEAD
+	rbd = push origin --delete
+	rp = !git remote prune origin && git tag -l | xargs git tag -d && git fetch --tags
+	sps = !git stash && git p && git stash apply
+	sss = !git stash && git sync && git stash apply
+	st = status
+	wipe = !git add . && git reset --hard HEAD
+[diff]
+	tool = bc3
+[difftool]
+	bc3 = trustExitCode
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
