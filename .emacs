@@ -193,14 +193,13 @@
         (djcb-term-start-or-switch "bash" t ,fullname ,cmd))))
 
 (djcb-program-shortcut (kbd "<S-f3>") "shell" "cd ~/code/10stories")
-(djcb-program-shortcut (kbd "<S-f4>") "web-shell" "cd ~/code/10stories && . .venv/bin/activate && ./run shell")
-;(djcb-program-shortcut (kbd "<S-f5>") "paster-serve" "tl && paster serve development.ini --reload ")
-;(djcb-program-shortcut (kbd "<S-f6>") "mysql" "mysql -A")
-;(djcb-program-shortcut (kbd "<S-f7>") "prod" "ssh awsapp1")
-;(djcb-program-shortcut (kbd "<S-f8>") "log" "cd ~/log")
-;(djcb-program-shortcut (kbd "<S-f9>") "shell2" "cd ~/repos/tracelons/transformer/etl")
-;(djcb-program-shortcut (kbd "\C-cs") "shell" "cd ~/repos/tracelons/transformer/etl && runetl -B")
-;(djcb-program-shortcut (kbd "\C-cs") "shell" "tl")
+(djcb-program-shortcut (kbd "<S-f4>") "web-shell" (concat "cd ~/code/10stories"
+							  " && . .venv/bin/activate"
+							  " && ./run shell"))
+(djcb-program-shortcut (kbd "<S-f5>") "web-server" (concat "cd ~/code/10stories"
+							  " && . .venv/bin/activate"
+							  " && ./run runserver"))
+(djcb-program-shortcut (kbd "<S-f6>") "postgres" "postgres -D /usr/local/var/postgres")
 
 ;; http://emacs-journey.blogspot.com/2011/02/proper-ansi-term-yankpaste.html
 (defun my-term-paste (&optional string)
