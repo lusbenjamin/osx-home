@@ -155,7 +155,9 @@
 (setq flycheck-javascript-jshint-executable "/usr/local/bin/jshint")
 (setq flycheck-javascript-eslint-executable "/usr/local/bin/eslint")
 (setq flycheck-json-jsonlint-executable "/usr/local/bin/jsonlint")
-(setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
+; Temporarily aiming python linter at project-specific file
+;(setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
+(setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 (setq flycheck-sh-shellcheck-executable "/usr/local/bin/shellcheck")
 
 
