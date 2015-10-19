@@ -106,6 +106,8 @@
  'web-mode
  'yaml-mode
  )
+(add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 
 ;; Find files and references using Git
 (ensure-package-installed 'find-things-fast)
@@ -118,6 +120,7 @@
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (ensure-package-installed 'ibuffer-git)
+
 (require 'ibuffer-git)
 (setq ibuffer-git-column-length 8)
 ;; Use human readable Size column instead of original one
@@ -129,15 +132,16 @@
    ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
    (t (format "%8d" (buffer-size)))))
 ;; Modify the default ibuffer-formats
-  (setq ibuffer-formats
-	'((mark modified read-only git-status-mini " "
-		(name 18 18 :left :elide)
-		" "
-		(size-h 9 -1 :right)
-		" "
-		(mode 16 16 :left :elide)
-		" "
-		filename-and-process)))
+(setq ibuffer-formats
+      '((mark modified read-only git-status-mini " "
+	      (name 18 18 :left :elide)
+	      " "
+	      (size-h 9 -1 :right)
+	      " "
+	      (mode 16 16 :left :elide)
+	      " "
+	      filename-and-process)))
+(setq ibuffer-default-sorting-mode 'major-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -159,6 +163,52 @@
 ;(setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
 (setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 (setq flycheck-sh-shellcheck-executable "/usr/local/bin/shellcheck")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Terminal Wizardry
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Set up starting terms with programs in them
+(defun djcb-term-start-or-switch (prg &optional use-existing name cmd)
+  "* run program PRG in a terminal buffer. If USE-EXISTING is non-nil "
+  " and PRG is already running, switch to that buffer instead of starting"
+  " a new instance."
+  (interactive)
+  (let ((bufname (if name (concat "*" name "*") (concat "*" prg "*"))))
+    (when (not (and use-existing
+                 (let ((buf (get-buffer bufname)))
+                   (and buf (buffer-name (switch-to-buffer bufname))))))
+      (ansi-term prg (or name prg))
+      (if cmd (process-send-string bufname (concat cmd "\n"))))))
+
+(defmacro djcb-program-shortcut (key &optional fullname cmd)
+  "* macro to create a key binding KEY to start some terminal program PRG;
+    if USE-EXISTING is true, try to switch to an existing buffer"
+  `(global-set-key ,key
+     '(lambda()
+        (interactive)
+        (djcb-term-start-or-switch "bash" t ,fullname ,cmd))))
+
+(djcb-program-shortcut (kbd "<S-f3>") "shell" "cd ~/code/10stories")
+(djcb-program-shortcut (kbd "<S-f4>") "web-shell" "cd ~/code/10stories && . .venv/bin/activate && ./run shell")
+;(djcb-program-shortcut (kbd "<S-f5>") "paster-serve" "tl && paster serve development.ini --reload ")
+;(djcb-program-shortcut (kbd "<S-f6>") "mysql" "mysql -A")
+;(djcb-program-shortcut (kbd "<S-f7>") "prod" "ssh awsapp1")
+;(djcb-program-shortcut (kbd "<S-f8>") "log" "cd ~/log")
+;(djcb-program-shortcut (kbd "<S-f9>") "shell2" "cd ~/repos/tracelons/transformer/etl")
+;(djcb-program-shortcut (kbd "\C-cs") "shell" "cd ~/repos/tracelons/transformer/etl && runetl -B")
+;(djcb-program-shortcut (kbd "\C-cs") "shell" "tl")
+
+;; http://emacs-journey.blogspot.com/2011/02/proper-ansi-term-yankpaste.html
+(defun my-term-paste (&optional string)
+  (interactive)
+  (process-send-string
+   (get-buffer-process (current-buffer))
+   (if string string (current-kill 0))))
+(global-set-key "\C-cy" 'my-term-paste)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
