@@ -20,6 +20,8 @@
 ;; Automatically refresh buffers from disk
 (global-auto-revert-mode 1)
 
+(setq-default indent-tabs-mode nil)
+
 ;; Launch the edit server to listen for edit commands 'ec'
 (server-start)
 
@@ -112,6 +114,15 @@
 ;; Find files and references using Git
 (ensure-package-installed 'find-things-fast)
 (require 'find-things-fast)
+(add-to-list 'ftf-filetypes "*.config")
+(add-to-list 'ftf-filetypes "*.html")
+(add-to-list 'ftf-filetypes "*.js")
+(add-to-list 'ftf-filetypes "*.json")
+(add-to-list 'ftf-filetypes "*.md")
+(add-to-list 'ftf-filetypes "*.scss")
+(add-to-list 'ftf-filetypes "*.sql")
+(add-to-list 'ftf-filetypes "*.txt")
+(add-to-list 'ftf-filetypes "*.yml")
 (global-set-key '[f1] 'ftf-find-file)
 (global-set-key '[f2] 'ftf-grepsource)
 
@@ -190,16 +201,21 @@
   `(global-set-key ,key
      '(lambda()
         (interactive)
-        (djcb-term-start-or-switch "bash" t ,fullname ,cmd))))
+        (djcb-term-start-or-switch "bash" t fullname cmd))))
 
 (djcb-program-shortcut (kbd "<S-f3>") "shell" "cd ~/code/10stories")
-(djcb-program-shortcut (kbd "<S-f4>") "web-shell" (concat "cd ~/code/10stories"
-							  " && . .venv/bin/activate"
-							  " && ./run shell"))
-(djcb-program-shortcut (kbd "<S-f5>") "web-server" (concat "cd ~/code/10stories"
+(global-set-key (kbd "<S-f4>") '(lambda() (interactive)
+                                  (browse-url "http://localhost:5000/")
+                                  (message "Launched browser to localhost")))
+(djcb-program-shortcut (kbd "<S-f5>") "webserver" (concat "cd ~/code/10stories"
 							  " && . .venv/bin/activate"
 							  " && ./run runserver"))
-(djcb-program-shortcut (kbd "<S-f6>") "postgres" "postgres -D /usr/local/var/postgres")
+(djcb-program-shortcut (kbd "<S-f6>") "dbserver" "postgres -D /usr/local/var/postgres")
+(djcb-program-shortcut (kbd "<S-f7>") "python" (concat "cd ~/code/10stories"
+							  " && . .venv/bin/activate"
+							  " && ./run shell"))
+(global-set-key (kbd "<S-f8>") '(lambda() (interactive)
+                                  (djcb-term-start-or-switch "bash" nil "shell-spawn")))
 
 ;; http://emacs-journey.blogspot.com/2011/02/proper-ansi-term-yankpaste.html
 (defun my-term-paste (&optional string)
@@ -247,6 +263,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(browse-url-browser-function (quote browse-url-chromium))
+ '(browse-url-chromium-program "~/bin/chrome")
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
