@@ -24,7 +24,7 @@ do
     eval "git difftool --no-prompt --ignore-submodules $args -- $filename &"
     # Pause briefly to avoid crashing Beyond Compare
     # Possibly issues with race conditions on filesystem?
-    sleep 0.1
+    sleep 0.2
     i=$((i + 1))
     if [ $((i % MAX_TABS)) -eq 0 ]
     then
