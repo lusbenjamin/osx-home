@@ -1,0 +1,35 @@
+#!/bin/sh
+MAX_TABS=20
+i=0
+more=1
+args=
+
+# Grab all git arguments that occur before the path separator
+for arg in "$@"
+do
+    if [ "$arg" != "--" ] && [ $more -eq 1 ]
+    then
+	args="$args $arg"
+    fi
+    if [ "$arg" -eq "--" ]
+    then
+	more=0
+    fi
+done
+
+git diff --name-status "$@"
+
+for filename in $( git diff --name-only "$@" )
+do
+    git difftool --no-prompt --ignore-submodules "$args -- $filename" &
+    sleep 1
+    i=$((i + 1))
+    if ((i % MAX_TABS == 0))
+    then
+	echo ""
+	date "+%Y-%m-%d %T    Generated diff for $MAX_TABS files. Press ENTER to continue or CTRL+C to abort..."
+	read -r
+    fi
+done
+echo ""
+date "+%Y-%m-%d %T    Generated diff for $i total file(s)."

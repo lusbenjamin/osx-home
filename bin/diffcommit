@@ -1,0 +1,3 @@
+#!/bin/sh
+git lg -1 $1
+git da "$1~" $1
