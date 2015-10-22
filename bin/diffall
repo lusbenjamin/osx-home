@@ -11,7 +11,7 @@ do
     then
 	args="$args $arg"
     fi
-    if [ "$arg" -eq "--" ]
+    if [ "$arg" = "--" ]
     then
 	more=0
     fi
