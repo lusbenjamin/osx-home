@@ -21,10 +21,12 @@ git diff --name-status "$@"
 
 for filename in $( git diff --name-only "$@" )
 do
-    git difftool --no-prompt --ignore-submodules "$args -- $filename" &
-    sleep 1
+    eval "git difftool --no-prompt --ignore-submodules $args -- $filename &"
+    # Pause briefly to avoid crashing Beyond Compare
+    # Possibly issues with race conditions on filesystem?
+    sleep 0.1
     i=$((i + 1))
-    if ((i % MAX_TABS == 0))
+    if [ $((i % MAX_TABS)) -eq 0 ]
     then
 	echo ""
 	date "+%Y-%m-%d %T    Generated diff for $MAX_TABS files. Press ENTER to continue or CTRL+C to abort..."
