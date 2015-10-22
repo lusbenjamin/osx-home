@@ -26,7 +26,7 @@
 	pp = !git p && git push
 	rhh = reset --hard HEAD
 	rbd = push origin --delete
-	rp = !git remote prune origin && git tag -l | xargs git tag -d && git fetch --tags
+	rp = fetch --prune
 	sps = !git stash && git p && git stash apply
 	sss = !git stash && git sync && git stash apply
 	st = status
