@@ -201,7 +201,7 @@
   `(global-set-key ,key
      '(lambda()
         (interactive)
-        (djcb-term-start-or-switch "bash" t fullname cmd))))
+        (djcb-term-start-or-switch "bash" t ,fullname ,cmd))))
 
 (djcb-program-shortcut (kbd "<S-f3>") "shell" "cd ~/code/10stories")
 (global-set-key (kbd "<S-f4>") '(lambda() (interactive)
