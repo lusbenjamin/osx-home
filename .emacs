@@ -10,6 +10,7 @@
 ;; Shell path
 (setenv "PATH" (concat (expand-file-name "~/") "bin" ":" (getenv "PATH")))
 (setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
+(setenv "PATH" (concat "~/code/10stories/node_modules/.bin" ":" (getenv "PATH")))
 
 ;; No backups becasuse VCS
 (setq make-backup-files nil)
@@ -110,6 +111,7 @@
  )
 (add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx" . web-mode))
 
 ;; Find files and references using Git
 (ensure-package-installed 'find-things-fast)
@@ -118,6 +120,7 @@
 (add-to-list 'ftf-filetypes "*.html")
 (add-to-list 'ftf-filetypes "*.js")
 (add-to-list 'ftf-filetypes "*.json")
+(add-to-list 'ftf-filetypes "*.jsx")
 (add-to-list 'ftf-filetypes "*.md")
 (add-to-list 'ftf-filetypes "*.scss")
 (add-to-list 'ftf-filetypes "*.sql")
@@ -174,6 +177,22 @@
 ;(setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
 (setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 (setq flycheck-sh-shellcheck-executable "/usr/local/bin/shellcheck")
+; https://truongtx.me/2014/03/10/emacs-setup-jsx-mode-and-jsx-syntax-checking/
+(flycheck-define-checker jsxhint-checker
+  "A JSX syntax and style checker based on JSXHint."
+
+  :command ("jsxhint" source)
+  :error-patterns
+  ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
+  :modes (web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (equal web-mode-content-type "jsx")
+              ;; enable flycheck
+              (flycheck-select-checker 'jsxhint-checker)
+              (flycheck-mode))))
+(add-to-list 'flycheck-checkers 'jsxhint-checker)
+(setq flycheck-jsxhint-checker-executable "~/code/10stories/node_modules/.bin/jsxhint")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
