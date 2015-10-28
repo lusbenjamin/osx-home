@@ -7,6 +7,10 @@
 ;; Emacs path
 (add-to-list 'load-path "~/emacs-lisp")
 
+;; Homebrew packages
+(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
 ;; Shell path
 (setenv "PATH" (concat (expand-file-name "~/") "bin" ":" (getenv "PATH")))
 (setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
@@ -22,9 +26,6 @@
 (global-auto-revert-mode 1)
 
 (setq-default indent-tabs-mode nil)
-
-;; Launch the edit server to listen for edit commands 'ec'
-(server-start)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

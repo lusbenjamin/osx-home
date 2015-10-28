@@ -9,6 +9,7 @@
 
 
 .aws/
+.bash_sessions/
 .config/
 .docker/
 .dropbox/

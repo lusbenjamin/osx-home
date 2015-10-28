@@ -79,8 +79,8 @@ shopt -s histappend
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
-# configure EMACS edit server to handle basic edit commands (must be manually launched ATM)
-alias emacs=ec
-alias emacsclient=ec
-export EDITOR="ec"
-export GIT_EDITOR="ec"
+# configure EMACS edit server to handle basic edit commands
+# http://www.emacswiki.org/emacs/EmacsAsDaemon
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -c -a emacs"
