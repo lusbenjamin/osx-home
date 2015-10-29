@@ -1,6 +1,6 @@
 
 [core]
-	editor = emacsclient -c -a emacs
+	editor = emacsclient -t
 [user]
 	name = Benjamin Lu
 	email = ben@10stories.co
@@ -12,6 +12,7 @@
 	#update-scripts = !sh /c/apt/update-git-scripts
 	ca = commit -a --amend
 	ci = commit -am
+	cm = commit -m
 	co = !git checkout $* && git submodule init && git submodule update && echo \"Checked out:\"
 	cp = cherry-pick
 	cpx = !git cp $* -ex
