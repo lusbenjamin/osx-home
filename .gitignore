@@ -16,6 +16,7 @@
 .emacs.d/
 .gem/
 .local/
+.node-gyp/
 .npm/
 .pylint.d/
 .ssh/
