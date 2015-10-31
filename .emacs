@@ -76,6 +76,21 @@
 (menu-bar-mode 0)
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 
+(show-paren-mode 1)
+;; Show matching paren offscreen in the minibuffer
+;; http://emacswiki.org/emacs/ShowParenMode
+(defadvice show-paren-function
+      (after show-matching-paren-offscreen activate)
+      "If the matching paren is offscreen, show the matching line in the
+        echo area. Has no effect if the character before point is not of
+        the syntax class ')'."
+      (interactive)
+      (let* ((cb (char-before (point)))
+             (matching-text (and cb
+                                 (char-equal (char-syntax cb) ?\) )
+                                 (blink-matching-open))))
+        (when matching-text (message matching-text))))
+
 ;; Fix obscure bug with desktop mode file names
 ;(setq desktop-file-version (format "%s" desktop-file-version))
 
