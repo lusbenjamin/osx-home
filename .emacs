@@ -11,6 +11,10 @@
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+;; Shell path
+(setenv "PATH" (concat (expand-file-name "~/") "bin" ":" (getenv "PATH")))
+(setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
+
 ;; No backups becasuse VCS
 (setq make-backup-files nil)
 
