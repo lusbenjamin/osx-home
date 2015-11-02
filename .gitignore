@@ -16,6 +16,7 @@
 .emacs.d/
 .gem/
 .local/
+.jspm/
 .node-gyp/
 .npm/
 .pylint.d/

@@ -11,11 +11,6 @@
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-;; Shell path
-(setenv "PATH" (concat (expand-file-name "~/") "bin" ":" (getenv "PATH")))
-(setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
-(setenv "PATH" (concat "~/code/10stories/node_modules/.bin" ":" (getenv "PATH")))
-
 ;; No backups becasuse VCS
 (setq make-backup-files nil)
 
@@ -120,6 +115,7 @@
 (ensure-package-installed
  'gitconfig-mode
  'gitignore-mode
+ 'jinja2-mode
  'markdown-mode
  'scss-mode
  'web-mode

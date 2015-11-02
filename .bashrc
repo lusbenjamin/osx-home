@@ -65,6 +65,8 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
 
 
+export PATH="${HOME}/bin:/usr/local/bin:${PATH}"
+
 # Change the window title of X terminals
 #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
 
