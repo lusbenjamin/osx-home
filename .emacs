@@ -135,8 +135,9 @@
  )
 (add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.html" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 (ensure-package-installed 'find-file-in-project)
 (require 'find-file-in-project)
@@ -186,6 +187,7 @@
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
+(add-to-list 'flycheck-disabled-checkers '(javascript-jshint))
 
 ;; HACK aim linter executables at project-specific scripts
 (setq flycheck-javascript-eslint-executable "~/code/10stories/run_eslint.sh")
@@ -255,7 +257,6 @@
  ;; Faces / colors
  ;'faces+
  ;'menu-bar+
- ;'color-theme
  ;'doremi
  ;'doremi-frm
  ;'doremi-cmd
@@ -266,7 +267,6 @@
  ;'yasnippet-bundle
  ;'persistent-scratch
  ;'hexrgb
- ;'auto-complete
 )
 
 
