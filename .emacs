@@ -11,10 +11,6 @@
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-;; Shell path
-(setenv "PATH" (concat (expand-file-name "~/") "bin" ":" (getenv "PATH")))
-(setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
-
 ;; No backups becasuse VCS
 (setq make-backup-files nil)
 
@@ -44,7 +40,7 @@
 
 ;; refresh package listings
 (when (not package-archive-contents)
-  (package-refresh-contesnts))
+  (package-refresh-contents))
 
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -66,6 +62,13 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;; Fix our emacs shell path
+(ensure-package-installed 'exec-path-from-shell)
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 ;; swap some keys on OS X
 (setq mac-command-modifier 'meta)
 (setq mac-control-modifier 'control)
@@ -74,6 +77,9 @@
 ;; turn of the menu bars
 (menu-bar-mode 0)
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
+
+(ensure-package-installed 'auto-complete)
+(require 'auto-complete)
 
 (show-paren-mode 1)
 ;; Show matching paren offscreen in the minibuffer
@@ -120,6 +126,8 @@
  'gitconfig-mode
  'gitignore-mode
  'jinja2-mode
+ 'js2-mode
+ 'json-mode
  'markdown-mode
  'scss-mode
  'web-mode
@@ -128,29 +136,22 @@
 (add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
 
-;; Find files and references using Git
-(ensure-package-installed 'find-things-fast)
-(require 'find-things-fast)
-(add-to-list 'ftf-filetypes "*.config")
-(add-to-list 'ftf-filetypes "*.html")
-(add-to-list 'ftf-filetypes "*.js")
-(add-to-list 'ftf-filetypes "*.json")
-(add-to-list 'ftf-filetypes "*.jsx")
-(add-to-list 'ftf-filetypes "*.md")
-(add-to-list 'ftf-filetypes "*.scss")
-(add-to-list 'ftf-filetypes "*.sql")
-(add-to-list 'ftf-filetypes "*.txt")
-(add-to-list 'ftf-filetypes "*.yml")
-(global-set-key '[f1] 'ftf-find-file)
-(global-set-key '[f2] 'ftf-grepsource)
+(ensure-package-installed 'find-file-in-project)
+(require 'find-file-in-project)
+(global-set-key '[f1] 'find-file-in-project)
+(global-set-key '[f2] 'find-file-in-project-by-selected)
+
+;; TODO explore helm and helm git add-ons
+;; TODO explore powerline
+;; TODO explore jedi
 
 ;; Sexier buffer list with git support
 (ensure-package-installed 'ibuffer)
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (ensure-package-installed 'ibuffer-git)
-
 (require 'ibuffer-git)
 (setq ibuffer-git-column-length 8)
 ;; Use human readable Size column instead of original one
@@ -184,31 +185,11 @@
 (ensure-package-installed 'flycheck)
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(flycheck-add-mode 'javascript-eslint 'web-mode)
 
-(setq flycheck-css-csslint-executable "/usr/local/bin/csslint")
-(setq flycheck-javascript-jshint-executable "/usr/local/bin/jshint")
-(setq flycheck-javascript-eslint-executable "/usr/local/bin/eslint")
-(setq flycheck-json-jsonlint-executable "/usr/local/bin/jsonlint")
-; Temporarily aiming python linter at project-specific file
-;(setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
+;; HACK aim linter executables at project-specific scripts
+(setq flycheck-javascript-eslint-executable "~/code/10stories/run_eslint.sh")
 (setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
-(setq flycheck-sh-shellcheck-executable "/usr/local/bin/shellcheck")
-; https://truongtx.me/2014/03/10/emacs-setup-jsx-mode-and-jsx-syntax-checking/
-(flycheck-define-checker jsxhint-checker
-  "A JSX syntax and style checker based on JSXHint."
-
-  :command ("jsxhint" source)
-  :error-patterns
-  ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
-  :modes (web-mode))
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (equal web-mode-content-type "jsx")
-              ;; enable flycheck
-              (flycheck-select-checker 'jsxhint-checker)
-              (flycheck-mode))))
-(add-to-list 'flycheck-checkers 'jsxhint-checker)
-(setq flycheck-jsxhint-checker-executable "~/code/10stories/node_modules/.bin/jsxhint")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
