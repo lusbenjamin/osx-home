@@ -138,6 +138,8 @@
 (add-to-list 'auto-mode-alist '("\\.html" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; Fall through to normal Flycheck ESLint settings for JS2
+(setq-default js2-show-parse-errors nil)
 
 (ensure-package-installed 'find-file-in-project)
 (require 'find-file-in-project)
