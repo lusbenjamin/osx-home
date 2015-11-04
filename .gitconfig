@@ -1,6 +1,6 @@
 
 [core]
-	editor = emacsclient -t
+	editor = emacsclient -c -a emacs
 [user]
 	name = Benjamin Lu
 	email = ben@10stories.co
@@ -41,3 +41,11 @@
 	helper = osxkeychain
 [push]
 	default = simple
+[merge]
+	tool = bc3
+[mergetool]
+	bc3 = trustExitCode
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
