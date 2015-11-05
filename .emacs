@@ -50,8 +50,10 @@
      ;; (package-installed-p 'evil)
      (if (package-installed-p package)
          nil
-       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-           (package-install package)
+       (when (y-or-n-p (format "Package %s is missing. Install it? " package))
+         (package-refresh-contents)
+         (package-install package)
+         (package-initialize)
          package)))
    packages))
 
@@ -99,7 +101,7 @@
 ;; Fix obscure bug with desktop mode file names
 ;(setq desktop-file-version (format "%s" desktop-file-version))
 
-(ensure-package-installed 'color-theme-solarized)
+(ensure-package-installed 'solarized-theme)
 (load-theme 'solarized-dark' t)
 (set-frame-font "-*-Andale Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1 (#x03)")
 
