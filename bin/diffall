@@ -27,7 +27,9 @@ do
     # Possibly issues with race conditions on filesystem?
     if [ $i -eq 1 ]
     then
-       sleep 1
+        sleep 0.7
+    else
+        sleep 0.3
     fi
     i=$((i + 1))
     if [ $((i % MAX_TABS)) -eq 0 ]
