@@ -20,7 +20,14 @@
 ;; Automatically refresh buffers from disk
 (global-auto-revert-mode 1)
 
+;; OSX 10.11 native fullscreen mode crashes when any frame gets a C-x C-c
+;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2015-11/msg00020.html
+(setq ns-use-native-fullscreen nil)
+
 (setq-default indent-tabs-mode nil)
+
+;; Listen for emacsclient commands
+(server-start)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -79,6 +86,10 @@
 ;; turn of the menu bars
 (menu-bar-mode 0)
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
+
+;; launch first frame as fullscreen
+(custom-set-variables
+ '(initial-frame-alist '((fullscreen . fullscreen))))
 
 (ensure-package-installed 'auto-complete)
 (require 'auto-complete)

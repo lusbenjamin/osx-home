@@ -85,4 +85,4 @@ export HISTFILESIZE=2000
 # http://www.emacswiki.org/emacs/EmacsAsDaemon
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -c -a emacs"
+export VISUAL="emacsclient -nc"
