@@ -134,7 +134,19 @@
 (require 'move-text)
 (move-text-default-bindings)
 
-;; Language modes
+(ensure-package-installed 'powerline)
+(require 'powerline)
+(powerline-default-theme)
+(scroll-bar-mode -1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Language Modes
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 (ensure-package-installed
  'gitconfig-mode
  'gitignore-mode
@@ -154,41 +166,7 @@
 ;; Fall through to normal Flycheck ESLint settings for JS2
 (setq-default js2-show-parse-errors nil)
 
-(ensure-package-installed 'find-file-in-project)
-(require 'find-file-in-project)
-(global-set-key '[f1] 'find-file-in-project)
-(global-set-key '[f2] 'find-file-in-project-by-selected)
-
-;; TODO explore helm and helm git add-ons
-;; TODO explore powerline
 ;; TODO explore jedi
-
-;; Sexier buffer list with git support
-(ensure-package-installed 'ibuffer)
-(require 'ibuffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(ensure-package-installed 'ibuffer-git)
-(require 'ibuffer-git)
-(setq ibuffer-git-column-length 8)
-;; Use human readable Size column instead of original one
-(define-ibuffer-column size-h
-  (:name "Size" :inline t)
-  (cond
-   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
-   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
-   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
-   (t (format "%8d" (buffer-size)))))
-;; Modify the default ibuffer-formats
-(setq ibuffer-formats
-      '((mark modified read-only git-status-mini " "
-	      (name 18 18 :left :elide)
-	      " "
-	      (size-h 9 -1 :right)
-	      " "
-	      (mode 16 16 :left :elide)
-	      " "
-	      filename-and-process)))
-(setq ibuffer-default-sorting-mode 'major-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -245,7 +223,6 @@
 (helm-autoresize-mode 1)
 
 (helm-mode 1)
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
