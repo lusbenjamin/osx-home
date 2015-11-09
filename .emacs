@@ -88,8 +88,7 @@
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 
 ;; launch first frame as fullscreen
-(custom-set-variables
- '(initial-frame-alist '((fullscreen . fullscreen))))
+(setq initial-frame-alist '((fullscreen . fullscreen)))
 
 (ensure-package-installed 'auto-complete)
 (require 'auto-complete)
@@ -198,6 +197,7 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-g") 'helm-do-grep)
 
 ;; git integration
 (ensure-package-installed 'helm-ls-git)
