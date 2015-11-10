@@ -138,6 +138,10 @@
 (powerline-default-theme)
 (scroll-bar-mode -1)
 
+(ensure-package-installed 'neotree)
+(require 'neotree)
+(global-set-key (kbd "C-x C-t") 'neotree)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
