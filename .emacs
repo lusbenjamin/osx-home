@@ -89,6 +89,7 @@
 
 ;; launch first frame as fullscreen
 (setq initial-frame-alist '((fullscreen . fullscreen)))
+(global-set-key (kbd "M-`") 'toggle-frame-fullscreen)
 
 (ensure-package-installed 'auto-complete)
 (require 'auto-complete)
@@ -151,6 +152,7 @@
 
 
 (ensure-package-installed
+ 'csv-mode
  'gitconfig-mode
  'gitignore-mode
  'jinja2-mode
