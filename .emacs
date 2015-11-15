@@ -202,15 +202,24 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x C-g") 'helm-do-grep)
 
-;; git integration
-(ensure-package-installed 'helm-ls-git)
-(require 'helm-ls-git)
-(global-set-key (kbd "C-x C-d") 'helm-browse-project)
+;; projectile integration
+(ensure-package-installed 'projectile
+                          'helm-projectile
+                          'ag
+                          'helm-ag)
+(require 'projectile)
+(require 'helm-projectile)
+(require 'ag)
+(require 'helm-ag)
+(projectile-global-mode)
+(setq projectile-indexing-method 'alien)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+(global-set-key (kbd "C-x C-f") 'helm-projectile)
+(global-set-key (kbd "C-x C-g") 'helm-projectile-ag)
 
-; open helm buffer inside current window, not occupy whole other window
+;open helm buffer inside current window, not occupy whole other window
 (setq helm-split-window-in-side-p           t
       ; move to end or beginning of source when reaching top or bottom of source.
       helm-move-to-line-cycle-in-source     t
