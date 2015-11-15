@@ -216,6 +216,7 @@
 (setq projectile-indexing-method 'alien)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+(global-set-key (kbd "C-x C-d") 'helm-find-files)
 (global-set-key (kbd "C-x C-f") 'helm-projectile)
 (global-set-key (kbd "C-x C-g") 'helm-projectile-ag)
 
