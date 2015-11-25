@@ -64,8 +64,9 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # colorize output, make sizes human readable, annotate types with suffixes
 alias ls='ls -GFh'
 
-
 export PATH="${HOME}/bin:/usr/local/bin:${PATH}"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Change the window title of X terminals
 #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'

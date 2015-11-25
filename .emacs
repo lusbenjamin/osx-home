@@ -20,6 +20,10 @@
 ;; Automatically refresh buffers from disk
 (global-auto-revert-mode 1)
 
+;; stdout is bound to ASCII by default in Python 3
+;; fix this. sigh
+(setenv "LC_CTYPE" "UTF-8")
+
 ;; OSX 10.11 native fullscreen mode crashes when any frame gets a C-x C-c
 ;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2015-11/msg00020.html
 (setq ns-use-native-fullscreen nil)
