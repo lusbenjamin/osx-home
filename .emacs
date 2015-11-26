@@ -290,19 +290,29 @@
         (interactive)
         (djcb-term-start-or-switch "bash" t ,fullname ,cmd))))
 
-(djcb-program-shortcut (kbd "<S-f3>") "shell" (concat "cd ~/code/10stories"
-                                                      " && . .venv/bin/activate"
-                                                      " && git st"))
+(djcb-program-shortcut (kbd "<S-f1>") "shell-1" (concat "cd ~/code/10stories"
+                                                        " && . .venv/bin/activate"
+                                                        " && git st"))
+(djcb-program-shortcut (kbd "<S-f2>") "shell-2" (concat "cd ~/code/10stories"
+                                                        " && . .venv/bin/activate"
+                                                        " && git st"))
+(djcb-program-shortcut (kbd "<S-f3>") "webserver" (concat "cd ~/code/10stories"
+							  " && . .venv/bin/activate"
+							  " && ./run runserver"))
 (global-set-key (kbd "<S-f4>") '(lambda() (interactive)
                                   (browse-url "http://localhost:5000/")
                                   (message "Launched browser to localhost")))
-(djcb-program-shortcut (kbd "<S-f5>") "webserver" (concat "cd ~/code/10stories"
-							  " && . .venv/bin/activate"
-							  " && ./run runserver"))
-(djcb-program-shortcut (kbd "<S-f6>") "dbserver" "postgres -D /usr/local/var/postgres")
+(djcb-program-shortcut (kbd "<S-f5>") "dbserver" "postgres -D /usr/local/var/postgres")
+(global-set-key (kbd "<S-f6>") '(lambda() (interactive)
+                                  (djcb-term-start-or-switch "bash" t "psql_mon"
+                                                             (concat "cd ~/code/10stories"
+                                                                     " && . .venv/bin/activate"
+                                                                     " && ./run psql_mon"))
+                                  (browse-url "file:///tmp/queries.html")
+                                  (message "Launched browser to psql_mon")))
 (djcb-program-shortcut (kbd "<S-f7>") "python" (concat "cd ~/code/10stories"
-							  " && . .venv/bin/activate"
-							  " && ./run shell"))
+                                                       " && . .venv/bin/activate"
+                                                       " && ./run shell"))
 (global-set-key (kbd "<S-f8>") '(lambda() (interactive)
                                   (djcb-term-start-or-switch "bash" nil "shell-spawn")))
 
