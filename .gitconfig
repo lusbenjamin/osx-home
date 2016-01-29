@@ -31,7 +31,7 @@
 	rp = fetch --prune
 	sps = !git stash && git p && git stash apply
 	sss = !git stash && git sync && git stash apply
-	st = status
+	st = !git lg -5 && git status
 	wipe = !git add . && git reset --hard HEAD
 [diff]
 	tool = bc3

@@ -30,6 +30,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Listen for emacsclient commands
 (server-start)
 
@@ -147,6 +149,7 @@
 (require 'neotree)
 (global-set-key (kbd "C-x C-t") 'neotree)
 
+(setq tramp-default-method "ssh")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -300,7 +303,7 @@
 							  " && . .venv/bin/activate"
 							  " && ./run runserver"))
 (global-set-key (kbd "<S-f4>") '(lambda() (interactive)
-                                  (browse-url "http://localhost:5000/")
+                                  (browse-url "http://localhost:5000/tell-me-a-story")
                                   (message "Launched browser to localhost")))
 (djcb-program-shortcut (kbd "<S-f5>") "dbserver" "postgres -D /usr/local/var/postgres")
 (global-set-key (kbd "<S-f6>") '(lambda() (interactive)
