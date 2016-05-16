@@ -1,0 +1,6 @@
+#!/bin/sh
+BASE=$( git rev-parse --verify "$1^{commit}" )
+COMP=$( git rev-parse --default HEAD $2 )
+date "+%Y-%m-%d %T    Comparing ${BASE}...${COMP}"
+URL="https://github.com/10stories/10stories/compare/${BASE}...${COMP}"
+python -m webbrowser "${URL}"
