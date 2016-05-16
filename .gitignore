@@ -1,6 +1,7 @@
 # -*- mode: gitignore; -*-
 
 .bash_history
+.pgpass
 .psql_history
 .python_history
 .rnd
@@ -19,6 +20,7 @@
 .jspm/
 .node-gyp/
 .npm/
+.oracle_jre_usage/
 .pylint.d/
 .ssh/
 .git-crypt/
