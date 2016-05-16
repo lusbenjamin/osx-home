@@ -178,6 +178,10 @@
 ;; Fall through to normal Flycheck ESLint settings for JS2
 (setq-default js2-show-parse-errors nil)
 
+(ensure-package-installed 'json-reformat)
+(require 'json-reformat)
+
+
 ;; TODO explore jedi
 
 
@@ -233,15 +237,17 @@
       helm-move-to-line-cycle-in-source     t
       ; search for library in `require' and `declare-function' sexp.
       helm-ff-search-library-in-sexp        t
+      helm-ff-file-name-history-use-recentf t
       ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-scroll-amount                    8
-      helm-google-suggest-use-curl-p        t
-      helm-mode-fuzzy-match                 t
+      helm-net-prefer-curl                  t
+      helm-ag-fuzzy-match                 t
+      helm-ag-use-agignore                t
       helm-completion-in-region-fuzzy-match t
 ;      helm-buffers-fuzzy-matching           t
 ;      helm-recentf-fuzzy-match              t
 ;      helm-M-x-fuzzy-match                  t
-      helm-ff-file-name-history-use-recentf t)
+      )
 
 (helm-autoresize-mode 1)
 
