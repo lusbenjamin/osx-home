@@ -85,9 +85,15 @@
   (exec-path-from-shell-initialize))
 
 ;; swap some keys on OS X
-(setq mac-command-modifier 'meta)
+(setq mac-command-modifier 'option)
 (setq mac-control-modifier 'control)
-(setq mac-option-modifier 'control)
+(setq mac-option-modifier 'meta)
+
+;; sane behavior for selected regions
+(delete-selection-mode 1)
+
+;; smoother scrolling
+(setq mouse-wheel-scroll-amount '(0.005))
 
 ;; turn of the menu bars
 (menu-bar-mode 0)
@@ -162,8 +168,6 @@
  'csv-mode
  'gitconfig-mode
  'gitignore-mode
- 'jinja2-mode
- 'js2-mode
  'json-mode
  'markdown-mode
  'scss-mode
@@ -174,9 +178,6 @@
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.html" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;; Fall through to normal Flycheck ESLint settings for JS2
-(setq-default js2-show-parse-errors nil)
 
 (ensure-package-installed 'json-reformat)
 (require 'json-reformat)
@@ -264,10 +265,13 @@
 (ensure-package-installed 'flycheck)
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(flycheck-add-mode 'html-tidy 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
+(flycheck-add-mode 'javascript-eslint 'json-mode)
 (add-to-list 'flycheck-disabled-checkers '(javascript-jshint))
 
 ;; HACK aim linter executables at project-specific scripts
+(setq flycheck-html-tidy-executable "/usr/local/bin/tidy")
 (setq flycheck-javascript-eslint-executable "~/code/10stories/run_eslint.sh")
 (setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 
@@ -375,7 +379,11 @@
  '(custom-safe-themes
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(desktop-save-mode t))
+ '(desktop-save-mode t)
+ '(js-indent-level 2)
+ '(json-reformat:indent-width 2)
+ '(web-mode-attr-indent-offset 4)
+ '(web-mode-attr-value-indent-offset 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
