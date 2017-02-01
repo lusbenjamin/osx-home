@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Emacs path
-(add-to-list 'load-path "~/emacs-lisp")
+;(add-to-list 'load-path "~/emacs-lisp")
 
 ;; Homebrew packages
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
@@ -140,7 +140,6 @@
 
 (ensure-package-installed 'solarized-theme)
 (load-theme 'solarized-dark' t)
-(set-frame-font "-*-Andale Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1 (#x03)")
 
 ;; Disable bell when scrolling to end of buffer
 ;; http://stackoverflow.com/questions/11679700/emacs-disable-beep-when-trying-to-move-beyond-the-end-of-the-document
@@ -238,7 +237,7 @@
 (require 'helm-projectile)
 (require 'ag)
 (require 'helm-ag)
-(projectile-global-mode)
+(projectile-mode)
 (setq projectile-indexing-method 'alien)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
@@ -279,15 +278,15 @@
 (ensure-package-installed 'flycheck)
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(flycheck-add-mode 'html-tidy 'web-mode)
+;;(flycheck-add-mode 'html-tidy 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'json-mode)
 (add-to-list 'flycheck-disabled-checkers '(javascript-jshint))
 
 ;; HACK aim linter executables at project-specific scripts
 (setq flycheck-html-tidy-executable "/usr/local/bin/tidy")
-(setq flycheck-javascript-eslint-executable "~/code/10stories/run_eslint.sh")
-(setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
+;;(setq flycheck-javascript-eslint-executable "~/code/10stories/run_eslint.sh")
+;;(setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
