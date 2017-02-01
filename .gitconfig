@@ -17,7 +17,7 @@
 	ca = commit -a --amend
 	ci = commit -am
 	cm = commit -m
-	co = !git checkout $* && git submodule init && git submodule update && echo \"Checked out:\"
+	co = checkout
 	cp = cherry-pick
 	cpx = !git cp $* -ex
 	d = diff
