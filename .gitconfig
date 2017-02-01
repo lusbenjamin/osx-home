@@ -10,6 +10,10 @@
 	#mcp = !sh /c/apt/aptTools/git/scripts/multi-cherry-pick
 	#sync = !sh /c/apt/aptTools/git/scripts/sync
 	#update-scripts = !sh /c/apt/update-git-scripts
+	bd = branch -d
+	bl = branch -a
+	bn = branch
+	bp = push --set-upstream origin HEAD
 	ca = commit -a --amend
 	ci = commit -am
 	cm = commit -m
