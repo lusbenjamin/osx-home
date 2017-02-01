@@ -1,6 +1,7 @@
 
 [core]
 	editor = emacsclient -c
+	excludesfile = /Users/benlu/.gitignore_global
 [user]
 	name = Benjamin Lu
 	email = ben@trackmaven.com
