@@ -87,3 +87,28 @@ export HISTFILESIZE=2000
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -nc"
+
+# hook up pyenv shims
+eval "$(pyenv init -)"
+# auto enter and activate pyenv virutal environments
+eval "$(pyenv virtualenv-init -)"
+
+function skipper() {
+    pyenv activate skipper-cli
+    /Users/benlu/.pyenv/shims/skipper $@
+    pyenv deactivate
+}
+
+# Docker Machine
+function dm-up() {
+  docker-machine start default
+  eval "$(docker-machine env default)"
+}
+
+function dm-stop() {
+  docker-machine stop default
+}
+
+# This loads nvm
+export NVM_DIR="/Users/benlu/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
