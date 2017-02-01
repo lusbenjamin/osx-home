@@ -1,10 +1,13 @@
 # -*- mode: gitignore; -*-
 
+.babel.json
 .bash_history
+.node_repl_history
 .pgpass
 .psql_history
 .python_history
 .rnd
+.skipper
 
 .ipython/profile_default/history.sqlite
 
@@ -12,14 +15,17 @@
 .aws/
 .bash_sessions/
 .config/
+.cups/
 .docker/
 .dropbox/
+.dvdcss/
 .emacs.d/
 .gem/
 .local/
 .jspm/
 .node-gyp/
 .npm/
+.nvm/
 .oracle_jre_usage/
 .pylint.d/
 .pyenv/
@@ -38,6 +44,7 @@ Movies/
 Music/
 Pictures/
 Public/
+ben_vpn_files/
 code/
 line-log/
 log/
@@ -59,6 +66,7 @@ psqldata/
 auto-save-list
 tramp
 .\#*
+scratch.sql
 
 # Org-mode
 .org-id-locations
