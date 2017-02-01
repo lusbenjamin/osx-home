@@ -179,6 +179,7 @@
 
 (ensure-package-installed
  'csv-mode
+ 'coffee-mode
  'gitconfig-mode
  'gitignore-mode
  'json-mode
@@ -187,6 +188,7 @@
  'web-mode
  'yaml-mode
  )
+(add-to-list 'auto-mode-alist '("\\.template" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.html" . web-mode))
@@ -393,7 +395,7 @@
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(desktop-save-mode t)
- '(js-indent-level 2)
+ '(js-indent-level 4)
  '(json-reformat:indent-width 2)
  '(web-mode-attr-indent-offset 4)
  '(web-mode-attr-value-indent-offset 4))
