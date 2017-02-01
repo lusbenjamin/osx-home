@@ -3,7 +3,7 @@
 	editor = emacsclient -c
 [user]
 	name = Benjamin Lu
-	email = ben@10stories.co
+	email = ben@trackmaven.com
 [alias]
 	#cb = !sh /c/apt/aptTools/git/scripts/create-branch
 	#maint = !sh /c/apt/aptTools/git/scripts/maint
