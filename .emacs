@@ -93,7 +93,21 @@
 (delete-selection-mode 1)
 
 ;; smoother scrolling
-(setq mouse-wheel-scroll-amount '(0.005))
+(ensure-package-installed 'sublimity)
+(require 'sublimity)
+(require 'sublimity-scroll)
+(setq sublimity-scroll-weight 10
+      sublimity-scroll-drift-length 5)
+(sublimity-mode 1)
+;(require 'sublimity-map)
+; (require 'sublimity-attractive)
+(setq mouse-wheel-progressive-speed nil)
+(global-set-key [wheel-left] 'ignore)
+(global-set-key [wheel-right] 'ignore)
+(global-set-key [double-wheel-left] 'ignore)
+(global-set-key [double-wheel-right] 'ignore)
+(global-set-key [triple-wheel-left] 'ignore)
+(global-set-key [triple-wheel-right] 'ignore)
 
 ;; turn of the menu bars
 (menu-bar-mode 0)
