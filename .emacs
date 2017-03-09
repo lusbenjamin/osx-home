@@ -395,6 +395,7 @@
  ;; If there is more than one, they won't work right.
  '(browse-url-browser-function (quote browse-url-chromium))
  '(browse-url-chromium-program "~/bin/chrome")
+ '(coffee-tab-width 4)
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
