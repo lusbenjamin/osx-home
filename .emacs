@@ -295,6 +295,10 @@
 ;;(setq flycheck-javascript-eslint-executable "~/code/10stories/run_eslint.sh")
 ;;(setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 
+;; Bugfix pylint for python 2 in Mac OS
+(setenv "LC_ALL" "en_US.UTF-8")
+(setenv "LANG" "en_US.UTF-8")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
