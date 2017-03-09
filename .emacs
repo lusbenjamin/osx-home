@@ -232,7 +232,7 @@
 (define-key helm-map (kbd "C-z")  'helm-select-action)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
+
 
 ;; projectile integration
 (ensure-package-installed 'projectile
@@ -247,8 +247,9 @@
 (setq projectile-indexing-method 'alien)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-(global-set-key (kbd "C-x C-d") 'helm-find-files)
-(global-set-key (kbd "C-x C-f") 'helm-projectile)
+(global-set-key (kbd "C-x b") 'helm-projectile)
+(global-set-key (kbd "C-x C-b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-g") 'helm-projectile-ag)
 
 ;open helm buffer inside current window, not occupy whole other window
