@@ -20,6 +20,9 @@ tramp
 # Thumbnails
 ._*
 
+# Git merge cruft
+*.orig
+
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
@@ -34,3 +37,6 @@ tramp
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Ignore vpn cruft
+ben_vpn_files/
