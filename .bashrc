@@ -95,7 +95,7 @@ eval "$(pyenv virtualenv-init -)"
 
 function skipper() {
     pyenv activate skipper-cli
-    /Users/benlu/.pyenv/shims/skipper $@
+    /Users/benlu/.pyenv/shims/skipper "$@"
     pyenv deactivate
 }
 
