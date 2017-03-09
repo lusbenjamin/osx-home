@@ -40,3 +40,6 @@ Temporary Items
 
 # Ignore vpn cruft
 ben_vpn_files/
+
+# Pylint is just me :(
+.pylintrc
