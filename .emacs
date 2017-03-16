@@ -328,7 +328,8 @@
 
 ;; HACK aim linter executables at project-specific scripts
 (setq flycheck-html-tidy-executable "/usr/local/bin/tidy")
-;;(setq flycheck-javascript-eslint-executable "~/code/10stories/run_eslint.sh")
+(setq flycheck-javascript-eslint-executable "~/code/trackmaven-spa/node_modules/eslint/bin/eslint.js")
+(setq flycheck-coffee-coffeelint-executable "~/code/trackmaven-spa/node_modules/coffeelint/bin/coffeelint")
 ;;(setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 
 ;; Bugfix pylint for python 2 in Mac OS
