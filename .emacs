@@ -161,7 +161,43 @@
 
 (ensure-package-installed 'powerline)
 (require 'powerline)
-(powerline-default-theme)
+(defun powerline-custom-theme ()
+  "Setup the default mode-line."
+  (interactive)
+  (setq-default mode-line-format
+                '("%e"
+                  (:eval
+                   (let* ((active (powerline-selected-window-active))
+                          (mode-line-buffer-id (if active 'mode-line-buffer-id 'mode-line-buffer-id-inactive))
+                          (mode-line (if active 'mode-line 'mode-line-inactive))
+                          (face1 (if active 'powerline-active1 'powerline-inactive1))
+                          (face2 (if active 'powerline-active2 'powerline-inactive2))
+                          (separator-left (intern (format "powerline-%s-%s"
+							  (powerline-current-separator)
+                                                          (car powerline-default-separator-dir))))
+                          (separator-right (intern (format "powerline-%s-%s"
+                                                           (powerline-current-separator)
+                                                           (cdr powerline-default-separator-dir))))
+                          (lhs (list (powerline-raw "%*" mode-line 'l)
+                                     (when powerline-display-buffer-size
+                                       (powerline-buffer-size mode-line 'l))
+                                     (powerline-vc face2 'r)
+                                     (powerline-raw " ")
+                                     (powerline-buffer-id mode-line-buffer-id 'l)
+                                     (when (and (boundp 'which-func-mode) which-func-mode)
+                                       (powerline-raw which-func-format nil 'l))))
+                          (rhs (list (powerline-raw global-mode-string face2 'r)
+				     (powerline-raw "%4l" face2 'l)
+				     (powerline-raw ":" face2 'l)
+				     (powerline-raw "%3c" face2 'r)
+                                     (when powerline-display-hud
+                                       (if active
+                                         (powerline-hud face2 face1)
+                                         (powerline-raw "  "))))))
+		     (concat (powerline-render lhs)
+			     (powerline-fill nil (powerline-width rhs))
+			     (powerline-render rhs)))))))
+(powerline-custom-theme)
 (scroll-bar-mode -1)
 
 (ensure-package-installed 'neotree)
