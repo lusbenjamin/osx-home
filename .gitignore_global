@@ -43,3 +43,6 @@ ben_vpn_files/
 
 # Pylint is just me :(
 .pylintrc
+
+# Emacs flycheck cruft
+flycheck_*
