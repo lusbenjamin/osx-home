@@ -217,6 +217,7 @@
 (setq web-mode-enable-current-column-highlight t)
 
 (ensure-package-installed
+ 'angular-mode
  'csv-mode
  'coffee-mode
  'gitconfig-mode
@@ -330,6 +331,7 @@
 (setq flycheck-html-tidy-executable "/usr/local/bin/tidy")
 (setq flycheck-javascript-eslint-executable "~/code/trackmaven-spa/node_modules/eslint/bin/eslint.js")
 (setq flycheck-coffee-coffeelint-executable "~/code/trackmaven-spa/node_modules/coffeelint/bin/coffeelint")
+(setq flycheck-coffeelintrc "~/code/trackmaven-spa/coffeelint.json")
 ;;(setq flycheck-python-pylint-executable "~/code/10stories/run_pylint.sh")
 
 ;; Bugfix pylint for python 2 in Mac OS
@@ -444,6 +446,9 @@
  '(desktop-save-mode t)
  '(js-indent-level 4)
  '(json-reformat:indent-width 2)
+ '(package-selected-packages
+   (quote
+    (angular-mode yaml-mode web-mode sublimity solarized-theme scss-mode powerline neotree move-text markdown-mode json-mode helm-projectile helm-ag gitignore-mode gitconfig-mode flycheck exec-path-from-shell csv-mode coffee-mode auto-complete ag)))
  '(web-mode-attr-indent-offset 4)
  '(web-mode-attr-value-indent-offset 4))
 (custom-set-faces
