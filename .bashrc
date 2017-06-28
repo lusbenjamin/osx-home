@@ -110,5 +110,5 @@ function dm-stop() {
 }
 
 # This loads nvm
-export NVM_DIR="/Users/benlu/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
