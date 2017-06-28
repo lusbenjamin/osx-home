@@ -1,0 +1,5 @@
+#!/bin/sh
+BASE=$( git merge-base "origin/master" "$1" )
+date "+%Y-%m-%d %T    Comparing $1 to ${BASE}"
+git lg "$1...${BASE}"
+diffall "${BASE}" "$1"
