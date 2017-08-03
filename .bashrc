@@ -1,6 +1,6 @@
 # detect git bash autocomplete script if it exists
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+    source $(brew --prefix)/etc/bash_completion
 fi
 
 # Customized for the Solarized color scheme by Sean O'Neil
@@ -55,7 +55,8 @@ else
     RESET="\033[m"
 fi
 
-export PS1="\[$CYAN\]\u@\h \[$BLUE\]\w\[$GREEN\]\$(__git_ps1)\[$BASE0\]\n\$ \[$RESET\]"
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+export PS1="\n┌─\t \[$CYAN\]\u@\h \[$BLUE\]\w\[$GREEN\]\$(__git_ps1)\[$RESET\]\n└─$ "
 
 # enable colorized prompt
 export CLICOLOR=1
@@ -64,7 +65,7 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # colorize output, make sizes human readable, annotate types with suffixes
 alias ls='ls -GFh'
 
-export PATH="${HOME}/code/10stories:${HOME}/bin:/usr/local/bin:${PATH}"
+export PATH="${HOME}/bin:${HOME}/bin:/usr/local/bin:${PATH}"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -85,19 +86,21 @@ export HISTFILESIZE=2000
 # configure EMACS edit server to handle basic edit commands
 # http://www.emacswiki.org/emacs/EmacsAsDaemon
 export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -nc"
+export EDITOR="subl -w"
+export VISUAL="subl -w"
+# export EDITOR="emacsclient -t"
+# export VISUAL="emacsclient -nc"
 
 # hook up pyenv shims
 eval "$(pyenv init -)"
 # auto enter and activate pyenv virutal environments
 eval "$(pyenv virtualenv-init -)"
 
-function skipper() {
-    pyenv activate skipper-cli
-    /Users/benlu/.pyenv/shims/skipper "$@"
-    pyenv deactivate
-}
+# function skipper() {
+#     pyenv activate skipper-cli
+#     /Users/benlu/.pyenv/shims/skipper "$@"
+#     pyenv deactivate
+# }
 
 # Docker Machine
 function dm-up() {
@@ -111,4 +114,4 @@ function dm-stop() {
 
 # This loads nvm
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+source "/usr/local/opt/nvm/nvm.sh"
