@@ -1,43 +1,37 @@
 
 [core]
-	editor = emacsclient -c
+	editor = subl -w
 	excludesfile = /Users/benlu/.gitignore_global
 [user]
 	name = Benjamin Lu
-	email = ben@trackmaven.com
+	email = lu.s.benjamin@gmail.com
 [alias]
-	#cb = !sh /c/apt/aptTools/git/scripts/create-branch
-	#maint = !sh /c/apt/aptTools/git/scripts/maint
-	#mcp = !sh /c/apt/aptTools/git/scripts/multi-cherry-pick
-	#sync = !sh /c/apt/aptTools/git/scripts/sync
-	#update-scripts = !sh /c/apt/update-git-scripts
-	bd = branch -d
-	bl = branch -a
-	bn = branch
+	bd = branch --delete
+	bl = branch --all
 	bp = push --set-upstream origin HEAD
-	ca = commit -a --amend
-	ci = commit -am
+	br = branch
+	ca = commit --all --amend
+	ci = commit --all -m
 	cm = commit -m
 	co = checkout
 	cp = cherry-pick
 	cpx = !git cp $* -ex
 	d = diff
-	dl = diff --name-status
-	dh = !sh diffhub
 	da = !sh diffall
+	db = !sh diffbranch
 	dc = !sh diffcommit
-	diffbranch = !sh diffbranch
-	f = !git fetch --tags && git fetch && git submodule init && git submodule update
+	dh = !sh diffhub
+	dl = diff --name-status
+	f = fetch --tags --prune
 	gr = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev --grep
 	lg = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev
 	lgg = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev --graph
 	m = !git co master && git p
-	p = !git fetch --tags && git pull --rebase && git rp
+	p = !git f && git pull --rebase
 	pbj = !python -m webbrowser http://youtu.be/s8MDNFaGfT4
 	pp = !git p && git push
 	rhh = reset --hard HEAD
 	rbd = push origin --delete
-	rp = fetch --prune
 	sps = !git stash && git p && git stash pop
 	st = !git branch --list && git stash list -2 && git lg -5 && git status
 	wipe = !git add . && git reset --hard HEAD
