@@ -23,6 +23,7 @@
 .gem/
 .local/
 .jspm/
+.matplotlib/
 .node-gyp/
 .npm/
 .nvm/
