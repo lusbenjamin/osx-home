@@ -21,8 +21,9 @@
 .dvdcss/
 .emacs.d/
 .gem/
-.local/
+.ipython/
 .jspm/
+.local/
 .matplotlib/
 .node-gyp/
 .npm/

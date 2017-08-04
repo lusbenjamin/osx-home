@@ -55,8 +55,7 @@ else
     RESET="\033[m"
 fi
 
-export VIRTUAL_ENV_DISABLE_PROMPT=true
-export PS1="\n┌─\t \[$CYAN\]\u@\h \[$BLUE\]\w\[$GREEN\]\$(__git_ps1)\[$RESET\]\n└─$ "
+export PS1="\n\[$CYAN\]┌─\t \[$MAGENTA\]\u@\h \[$YELLOW\]\w\[$GREEN\]\$(__git_ps1)\n\[$CYAN\]└─$\[$RESET\] "
 
 # enable colorized prompt
 export CLICOLOR=1
@@ -91,6 +90,8 @@ export VISUAL="subl -w"
 # export EDITOR="emacsclient -t"
 # export VISUAL="emacsclient -nc"
 
+# do not add environment to command prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=true
 # hook up pyenv shims
 eval "$(pyenv init -)"
 # auto enter and activate pyenv virutal environments
