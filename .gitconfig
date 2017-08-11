@@ -23,9 +23,9 @@
 	dh = !sh diffhub
 	dl = diff --name-status
 	f = fetch --tags --prune
-	gr = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev --grep
-	lg = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev
-	lgg = log --pretty=format:'%Creset%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev --graph
+	gr = log --pretty=format:'%C(yellow)%h %C(cyan)%cr %C(magenta)%an%C(green)%d %C(reset)%s' --abbrev --grep
+	lg = log --pretty=format:'%C(yellow)%h %C(cyan)%cr %C(magenta)%an%C(green)%d %C(reset)%s' --abbrev
+	lgg = log --pretty=format:'%C(yellow)%h %C(cyan)%cr %C(magenta)%an%C(green)%d %C(reset)%s' --abbrev --graph
 	m = !git co master && git p
 	p = !git f && git pull --rebase
 	pbj = !python -m webbrowser http://youtu.be/s8MDNFaGfT4
