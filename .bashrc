@@ -97,6 +97,10 @@ eval "$(pyenv init -)"
 # auto enter and activate pyenv virutal environments
 eval "$(pyenv virtualenv-init -)"
 
+# Google Cloud Platform SDK
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+
 # function skipper() {
 #     pyenv activate skipper-cli
 #     /Users/benlu/.pyenv/shims/skipper "$@"
