@@ -2,6 +2,7 @@
 
 .babel.json
 .bash_history
+.boto
 .node_repl_history
 .pgpass
 .psql_history
@@ -21,6 +22,7 @@
 .dvdcss/
 .emacs.d/
 .gem/
+.gnupg/
 .ipython/
 .jspm/
 .local/
