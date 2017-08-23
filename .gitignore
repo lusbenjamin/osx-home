@@ -23,6 +23,7 @@
 .emacs.d/
 .gem/
 .gnupg/
+.gsutil/
 .ipython/
 .jspm/
 .local/
